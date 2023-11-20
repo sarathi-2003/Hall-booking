@@ -65,7 +65,7 @@ app.post('booking/create/:id',(req,res)=>{
         let dateFormate = date.toLocaleDateString();
         let idExists = rooms.find((el)=>el.roomId === id)
         if(idExists === undefined){
-            return res.status(400).json({message:"rooms does not exist.", RoomList : rooms});
+            return res.status(400).json({message:"rooms does not exist.", RoomList:rooms});
         }
 
         let matchID = bookings.filter((b)=> b.roomId === id)
@@ -83,7 +83,7 @@ app.post('booking/create/:id',(req,res)=>{
         }
         else{
             let newID = "B"+(bookings.length + 1);
-            let newbooking = {...bookRoom, bookingID: newID, roomId : id, status:"booked",booked_On:dateFormate}
+            let newbooking = {...bookRoom, bookingID: newID, roomId:id, status:"booked",booked_On: dateFormate}
             bookings.push(newbooking);
             const customerdetails = customers.find(cust=>
             cust.name === newbooking.customer);
